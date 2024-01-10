@@ -1,4 +1,4 @@
-# Oncofusion-NF pipeline
+# CLAM-NF pipeline
 
 A pipeline for generating pathology slide embeddings using CLAM.
 

@@ -2,7 +2,7 @@ params.dremio.port = 32010
 params.dremio.scheme = 'grpc+tcp'
 
 process GET_SLIDES {
-    label "localTask""
+    label "localTask"
     label "lunaTask"
 
     secret 'DREMIO_USERNAME'

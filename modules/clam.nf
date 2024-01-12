@@ -1,14 +1,20 @@
 params.outdir = "results"
 
+params.clam_path = ""
+
 process SEG_AND_PATCH {
     label "bigTask"
     label "clamTask"
+
+    beforeScript "export PATH=${params.clam_path}:\$PATH"
 
     input:
     tuple val(slide_id), path(slide)
 
     output:
     tuple val(slide_id), path(slide), path("${slide_id}.h5")
+
+    script:
 
     """
     run_seg_and_patch.py \
@@ -25,11 +31,15 @@ process EXTRACT_FEATURES {
     label "gpuTask"
     label "parallelTask"
 
+    beforeScript "export PATH=${params.clam_path}:\$PATH"
+
     input:
     tuple val(slide_id), path(slide), path(h5, stageAs: 'input.h5')
 
     output:
     tuple val(slide_id), path("${slide_id}.h5"), path("${slide_id}.pt")
+
+    script:
 
     """
     run_extract_features.py \
